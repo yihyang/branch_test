@@ -5,7 +5,7 @@ Sometimes when we work in a big team, we will have features compromised separate
 Usually the changes that we make will need to be deployed separately into production / QA environment. However if we all merge it back to same environment branch, it will be quite challenging if we need to launch the features separately.
 
 Therefore the proposed idea will be create a different set of epic branches which will act as anchor for the changes.
-The new changes will be pushed to the epic branches and once once the epic branches are completed it can be launched into the production / QA environment separately.
+The new changes will be pushed to the epic branches and once the epic branches are completed it can be launched into the production / QA environment separately.
 
 
 The ![Workflow file](.github/workflows/merge_epic_branch.yml) aims to help this process by automating the pushed changes to the epic branch to the environment.
