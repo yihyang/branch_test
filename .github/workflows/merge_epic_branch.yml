@@ -11,6 +11,6 @@ jobs:
     - name: Set Git config
       run: |
         current_branch=${GITHUB_REF#refs/heads/}
-        target_branch=$(${GITHUB_REF#refs/heads/} | awk '{split($0,a,"/"); print a[2]}')
+        target_branch=$(echo ${GITHUB_REF#refs/heads/} | awk '{split($0,a,"/"); print a[2]}')
         echo $current_branch
         echo $target_branch
