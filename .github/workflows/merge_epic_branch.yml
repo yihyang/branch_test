@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Set Git config
       run: |
-        current_branch=$(${GITHUB_REF#refs/heads/})
+        current_branch=${GITHUB_REF#refs/heads/}
         target_branch=$(${GITHUB_REF#refs/heads/} | sed -n '/\* /s///p' | awk '{split($0,a,"/"); print a[2]}')
         echo $current_branch
         echo $target_branch
