@@ -3,14 +3,23 @@ name: Push Epic Branch commit to environment
 on:
   push:
     branches:
-      - epic/staging_a/*
+      - epic/staging_*/*
 jobs:
   sync-master-qa-dev:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Set Git config
       run: |
-        current_branch=$(${GITHUB_REF#refs/heads/})
-        target_branch=$($current_branch | sed -n '/\* /s///p' | awk '{split($0,a,"/"); print a[2]}')
-        echo $current_branch
-        echo $target_branch
+          git config --local user.email "actions@github.com"
+          git config --local user.name "Github Actions"
+          git fetch --unshallow
+    - name: Push update to target branch
+      run: |
+        # get branch name
+        current_branch=${GITHUB_REF#refs/heads/}
+        target_branch=$(echo ${GITHUB_REF#refs/heads/} | awk '{split($0,a,"/"); print a[2]}')
+        # push update
+        git checkout $target_branch
+        git merge --no-ff origin/$current_branch -m "Auto-merge from $current_branch"
+        git push
