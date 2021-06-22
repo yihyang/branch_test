@@ -25,5 +25,3 @@ jobs:
         git checkout $target_branch
         git merge --no-ff origin/$current_branch -m "Auto-merge from $current_branch"
         git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
